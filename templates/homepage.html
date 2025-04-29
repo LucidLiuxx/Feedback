@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="static/css/style.css">
+        <style>
+            /* Styling for sections on the homepage */
+            #aboutSection, #linksSection {
+                margin: 20px auto;
+                width: 80%;
+                text-align: center;
+                padding: 20px;
+                border: 1px solid #ddd;
+                border-radius: 8px;
+                background-color: #f9f9f9;
+            }
+
+            #aboutSection h2, #tipsSection h2, #causesSection h2, #linksSection h2 {
+                color: #307637;
+            }
+
+            #aboutSection p, #tipsSection ul, #causesSection ul {
+                text-align: left;
+                margin: 10px 0;
+                line-height: 1.6;
+            }
+
+            #tipsSection ul, #causesSection ul {
+                list-style-type: disc;
+                margin-left: 20px;
+            }
+
+            #linksSection a {
+                display: inline-block;
+                margin: 10px;
+                padding: 10px 20px;
+                text-decoration: none;
+                color: white;
+                background-color: #307637;
+                border-radius: 5px;
+                font-weight: bold;
+            }
+
+            #linksSection a:hover {
+                background-color: #3a8b42;
+            }
+
+            #contentWrapper {
+                display: flex;
+                justify-content: space-between;
+                margin: 20px auto;
+                width: 80%;
+            }
+
+            #causesSection, #tipsSection {
+                width: 48%;
+                padding: 20px;
+                border: 1px solid #ddd;
+                border-radius: 8px;
+                background-color: #f9f9f9;
+            }
+        </style>
+        <title>Rolsa Technologies - Home</title>
+    </head>
+
+    <header>
+        <!-- Header section with company name and navigation -->
+        <div id="headbanner">
+            <h1 id="companyname">Rolsa Technologies</h1>
+            <h1 id="pagename">Home</h1>
+            <h1 id="cornerbutton"><a href="/login">Login</a></h1>
+        </div>
+    </header>
+
+    <body>
+        <!-- About section -->
+        <div id="aboutSection">
+            <h2>About Rolsa Technologies</h2>
+            <p>
+                Rolsa Technologies is a leading green technology company dedicated to helping individuals and households transition to sustainable energy solutions. 
+                We specialize in the installation of solar panels, electric vehicle charging stations, and smart home energy management systems. 
+                Our mission is to empower our customers to reduce their carbon footprint and embrace a cleaner, greener future.
+            </p>
+        </div>
+
+        <!-- Wrapper for causes and tips sections -->
+        <div id="contentWrapper">
+            <!-- Causes of carbon emissions -->
+            <div id="causesSection">
+                <h2>Leading Causes of Carbon Emissions</h2>
+                <ul>
+                    <li><strong>Electricity and Heating:</strong> Globally, electricity and heat production account for 34% of greenhouse gas emissions. Fossil fuels like coal, oil, and natural gas are the primary contributors.</li>
+                    <li><strong>Transportation:</strong> Responsible for 20% of global emissions, with cars, trucks, and airplanes being the largest contributors. For example, a typical gasoline-powered car emits about 4.6 metric tons of CO<sub>2</sub> annually.</li>
+                    <li><strong>Food Production:</strong> Agriculture contributes 8% of global emissions, with livestock (e.g., cows and sheep) producing methane, a greenhouse gas 28 times more potent than CO<sub>2</sub>.</li>
+                    <li><strong>Waste:</strong> Landfills release methane as organic waste decomposes. Globally, waste contributes about 3% of greenhouse gas emissions.</li>
+                    <li><strong>Deforestation:</strong> Cutting down forests for agriculture or urban development reduces the Earth's ability to absorb CO<sub>2</sub>. Deforestation accounts for 10% of global emissions.</li>
+                </ul>
+            </div>
+
+            <!-- Tips to reduce carbon emissions -->
+            <div id="tipsSection">
+                <h2>How to Reduce Your Carbon Emissions</h2>
+                <ul>
+                    <li><strong>Switch to Renewable Energy:</strong> Installing solar panels can reduce your household's carbon footprint by up to 80%.</li>
+                    <li><strong>Use Energy-Efficient Appliances:</strong> Replacing old appliances with energy-efficient models can save up to 30% on energy consumption.</li>
+                    <li><strong>Drive Less:</strong> Switching to public transportation or carpooling can reduce transportation emissions by up to 50%. Electric vehicles produce 50% fewer emissions than gasoline-powered cars.</li>
+                    <li><strong>Reduce Waste:</strong> Recycling one ton of paper saves 17 trees and reduces CO<sub>2</sub> emissions by 1 metric ton. Composting organic waste prevents methane emissions from landfills.</li>
+                    <li><strong>Improve Home Insulation:</strong> Proper insulation can reduce heating and cooling energy use by 20-30%, lowering emissions and saving money.</li>
+                    <li><strong>Adopt a Plant-Based Diet:</strong> Reducing meat consumption can lower your food-related carbon footprint by up to 50%. For example, producing 1 kg of beef emits 27 kg of CO<sub>2</sub>, while producing 1 kg of vegetables emits only 2 kg of CO<sub>2</sub>.</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Links to other pages -->
+        <div id="linksSection">
+            <h2>Explore More</h2>
+            <a href="/login">Create and Manage Bookings</a>
+            <a href="/calculator">Carbon Footprint Calculator</a>
+        </div>
+    </body>
+</html>

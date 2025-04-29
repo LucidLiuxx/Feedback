@@ -1,0 +1,48 @@
+header {background-color: #307637;}
+body{
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
+}
+
+#headbanner {
+    overflow: hidden;
+    background-color: #307637;
+    color: white;
+    position: sticky;
+    top: 0;
+}
+
+#companyname {
+    float: left;
+    margin-left: 30px;
+}
+
+#pagename {
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, 0);
+    padding-right: 30px;
+}
+
+#cornerbutton {
+    float: right;
+    margin-right: 30px;
+    border-style: outset;
+    color: whitesmoke;
+    background-color: rgb(141, 177, 70);
+
+    a {
+        text-decoration: none;
+        color: inherit;
+    }
+}
+
+#cornerbutton:hover {
+    background-color: rgb(163, 206, 77);
+}
+
+#cornerbutton:active {
+    background-color: #336330;
+    border-style: inset;
+    border-color: lightgrey;
+}

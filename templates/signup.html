@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="static/css/style.css">
+        <style>
+            /*Centres the sign-up form in the middle of the page*/
+            #signupForm {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                text-align: center;
+                width: 400px;
+                padding: 30px;
+                border: 1px solid #ddd;
+                border-radius: 10px;
+                background-color: #ffffff;
+                box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            }
+
+            #signupForm h3 {
+                margin-bottom: 20px;
+                font-size: 24px;
+                color: #307637;
+                text-decoration: underline;
+            }
+
+            #signupForm label {
+                width: 100%;
+                display: inline-block;
+                text-align: left;
+                margin-bottom: 10px;
+                font-weight: bold;
+                color: #333;
+            }
+
+            #signupForm input {
+                width: 100%;
+                padding: 10px;
+                margin-bottom: 15px;
+                font-size: 14px;
+                border: 1px solid #ccc;
+                border-radius: 5px;
+                box-sizing: border-box;
+            }
+
+            #signupForm button {
+                width: 100%;
+                padding: 10px;
+                background-color: #418a44;
+                color: white;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+                font-size: 16px;
+            }
+
+            #signupForm button:hover {
+                background-color: #45a049;
+            }
+
+            #signupForm ul {
+                list-style-type: none;
+                padding: 0;
+                margin: 0;
+            }
+
+            #invalidsignup li {
+                color: red;
+                font-size: 14px;
+                margin-top: 10px;
+            }
+
+            #passcriteria {
+                text-align: left;
+                margin-top: 10px;
+                padding: 15px;
+                border: 1px solid #ddd;
+                border-radius: 8px;
+                background-color: #f9f9f9;
+                font-size: 14px;
+                color: #333;
+            }
+
+            #passcriteria p {
+                font-weight: bold;
+                margin-bottom: 10px;
+                color: #307637;
+            }
+
+            #passcriteria li {
+                margin-bottom: 8px;
+                padding-left: 20px;
+                position: relative;
+            }
+
+            #passcriteria li::before {
+                content: "✔";
+                color: #307637;
+                font-weight: bold;
+                position: absolute;
+                left: 0;
+            }
+
+            #footer {
+                position: absolute;
+                bottom: 0;
+                left: 50%;
+                transform: translate(-50%, 0);
+                text-align: center;
+                width: 100%;
+                background-color: #dfdfdf;
+            }
+        </style>
+        
+        <title>Sign-up</title>
+    </head>
+
+
+    <header>
+        <div id="headbanner">
+            <h1 id="companyname">Rolsa Technologies</h1>
+            <h1 id="pagename">Sign-up</h1>
+            <h1 id="cornerbutton"><a href="/home">Home</a></h1>
+        </div>
+    </header>
+
+    <body>
+        <!--Sign-up form to allow users to create an account, which will be stored in customerDetails.csv-->
+        <div id="signupForm">
+            <h3 style="text-decoration: underline";>Sign-up</h3>
+            <form method="POST" action="/signup">
+                <p></p>
+                <label>Email: </label>
+                <input type="email" name="email" placeholder="Enter your email" required></input>
+            
+                <p></p>
+                <label>Password: </label>
+                <input type="password" name="password" placeholder="Create a password" required></input>
+
+                <ul id="passcriteria">
+                    <p>Your password should:</p>
+                    <li>Be at least 8 characters long</li>
+                    <li>Contain at least one uppercase letter</li>
+                    <li>Contain at least one lowercase letter</li>
+                    <li>Contain at least one number</li>
+                    <li>Contain at least one special character (e.g., !, @, #, etc.).</li>
+                    <li>Not contain a sequence of 3 or more characters from the email address.</li>
+                </ul>
+            
+                <p></p>
+                <button type="submit">Sign up</button>
+            </form>
+            {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    <ul id="invalidsignup">
+                        {% for message in messages %}
+                            <li style="color: red;">{{ message }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            {% endwith %}
+            <p>Already have an account? <a href="/login">Log in here</a>.</p>
+        </div>
+
+        <!--Information about account creation, informing them that their email, password and bookings will be stored and they mmay delete their account at will.-->
+    <footer>
+        <div id="footer">
+            <p>If you create an account, your email and password will be stored alongside any bookings you schedule. You may delete your account and all data associated with it at any time.</p>
+        </div>
+    </footer>
+    </body>
+
+    
+</html>

@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <link rel="stylesheet" href="static/css/style.css">
+        <style>
+            #bookingForm {
+                margin: 20px auto;
+                text-align: center;
+            }
+
+            #bookingTable {
+                margin: 20px auto;
+                width: 80%;
+                border-collapse: collapse;
+            }
+
+            #bookingTable th, #bookingTable td {
+                border: 1px solid #ddd;
+                padding: 8px;
+                text-align: center;
+            }
+
+            #bookingTable th {
+                background-color: #307637;
+                color: white;
+            }
+
+            #deleteAccountForm {
+                position: absolute;
+                bottom: 0;
+                left: 50%;
+                transform: translate(-50%, 0);
+                text-align: center;
+                width: 100%;
+                background-color: #dfdfdf;
+            }
+
+            #deleteAccountButton {
+                margin: 20px auto;
+                display: block;
+                padding: 10px 20px;
+                background-color: #d9534f;
+                color: white;
+                text-align: center;
+                border: none;
+                border-radius: 5px;
+                font-size: 16px;
+                cursor: pointer;
+            }
+
+            #deleteAccountButton:hover {
+                background-color: #c9302c;
+            }
+        </style>
+
+        <script>
+            // JavaScript function to confirm sign-out when navigating to the home page
+            function confirmSignOut(event) {
+                const confirmation = confirm("You will be signed out if you continue. Do you want to proceed?");
+                if (confirmation) {
+                    // Send a POST request to the /logout route to remove the email from the session
+                    fetch('/logout', { method: 'POST' })
+                        .then(() => {
+                            alert("You have been successfully signed out.");
+                            window.location.href = "/home"; // Redirect to the home page
+                        });
+                        
+                } else {
+                    event.preventDefault(); // Prevent navigation if the user cancels
+                }
+            }
+            
+            // JavaScript function to confirm account deletion
+            function confirmAccountDeletion(event) {
+                const confirmation = confirm("Are you sure you want to delete your account? This action cannot be undone.");
+                if (!confirmation) {
+                    event.preventDefault(); // Prevent form submission if the user cancels
+                }
+            }
+        </script>
+
+        <title>Bookings</title>
+    </head>
+
+
+    <header>
+        <div id="headbanner">
+            <h1 id="companyname">Rolsa Technologies</h1>
+            <h1 id="pagename">Bookings</h1>
+            <h1 id="cornerbutton">
+                <a href="#" onclick="confirmSignOut(event)">Home</a>
+            </h1>
+        </div>
+    </header>
+
+    <body>
+        <div id="bookingForm">
+            <h3>Create a Booking</h3>
+            <form method="POST" action="/bookings">
+                <label for="booking_type">Booking Type:</label>
+                <select name="booking_type" id="booking_type" required>
+                    <option value="Consultation">Consultation</option>
+                    <option value="Installation">Installation</option>
+                </select>
+                <label for="date">Date:</label>
+                <input type="date" name="date" id="date" required>
+                <button type="submit">Create Booking</button>
+            </form>
+        </div>
+
+        <div id="bookingList">
+            <h3>Your Bookings</h3>
+            <table id="bookingTable">
+                <thead>
+                    <tr>
+                        <th>Booking Type</th>
+                        <th>Date</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for booking in bookings %}
+                        <tr>
+                            <td>{{ booking['BookingType'] }}</td>
+                            <td>{{ booking['Date'] }}</td>
+                            <td>{{ booking['Status'] }}</td>
+                            <td>
+
+                                <!-- Edit Booking Form -->
+                                <form method="POST" action="/edit_booking" style="display: inline;">
+                                    <input type="hidden" name="booking_type" value="{{ booking['BookingType'] }}">
+                                    <input type="hidden" name="date" value="{{ booking['Date'] }}">
+                                    <button type="submit">Edit</button>
+                                </form>
+                                <!-- Delete Booking Form -->
+                                <form method="POST" action="/delete_booking" style="display: inline;">
+                                    <input type="hidden" name="booking_type" value="{{ booking['BookingType'] }}">
+                                    <input type="hidden" name="date" value="{{ booking['Date'] }}">
+                                    <button type="submit">Delete</button>
+                                </form>
+
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        <footer>
+            <!-- Delete Account -->
+            <form method="POST" action="/delete_account" id="deleteAccountForm" onsubmit="confirmAccountDeletion(event)">
+                <button id="deleteAccountButton" type="submit">Delete My Account</button>
+                <p>Deleting your account will delete all data associated with you, including any scheduled bookings.</p>
+            </form>
+        </footer>
+    </body>
+
+    
+
+</html>

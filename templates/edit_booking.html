@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="static/css/style.css">
+        <style>
+            #editForm {
+                margin: 20px auto;
+                text-align: center;
+            }
+        </style>
+        <title>Edit Booking</title>
+    </head>
+
+    <header>
+        <div id="headbanner">
+            <h1 id="companyname">Rolsa Technologies</h1>
+            <h1 id="pagename">Update Booking</h1>
+            <h1 id="cornerbutton"><a href="/home">Home</a></h1>
+        </div>
+    </header>
+
+    <body>
+        <div id="editForm">
+            <h3>Edit Booking</h3>
+            <form method="POST" action="/update_booking">
+                <input type="hidden" name="old_booking_type" value="{{ booking_type }}">
+                <input type="hidden" name="old_date" value="{{ date }}">
+                <label for="new_booking_type">New Booking Type:</label>
+                <select name="new_booking_type" id="new_booking_type" required>
+                    <option value="Consultation" {% if booking_type == 'Consultation' %}selected{% endif %}>Consultation</option>
+                    <option value="Installation" {% if booking_type == 'Installation' %}selected{% endif %}>Installation</option>
+                </select>
+                <label for="new_date">New Date:</label>
+                <input type="date" name="new_date" id="new_date" value="{{ date }}" required>
+                <button type="submit">Update Booking</button>
+            </form>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="static/css/style.css">
+        <style>
+            /* General styling for the page */
+            body {
+                font-family: Arial, sans-serif;
+                margin: 0;
+                padding: 0;
+                background-color: #f9f9f9;
+                color: #333;
+                display: flex;
+                flex-direction: column;
+                min-height: 100vh; /* Ensure the body takes up the full height of the viewport */
+            }
+
+            /* Main content area */
+            #calculatorInputs {
+                text-align: center;
+                margin: 20px auto;
+                width: 80%;
+                background-color: #ffffff;
+                padding: 20px;
+                border-radius: 10px;
+                box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+                flex: 1; /* Push the footer to the bottom if content is short */
+            }
+
+            #calculatorInputs h3 {
+                color: #307637;
+                margin-bottom: 20px;
+            }
+
+            #calculatorInputs label {
+                width: 150px;
+                display: inline-block;
+                text-align: right;
+                margin-right: 10px;
+            }
+
+            #calculatorInputs input {
+                padding: 6px;
+                font-size: 14px;
+                border-radius: 4px;
+                border: 1px solid #ccc;
+                margin-bottom: 10px;
+                width: 200px;
+            }
+
+            #inputUnits {
+                margin-left: 5px;
+                font-size: 14px;
+                opacity: 70%;
+            }
+
+            #calculateButton {
+                margin-top: 20px;
+                padding: 10px 20px;
+                font-size: 16px;
+                background-color: #418a44;
+                color: white;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+            }
+
+            #calculateButton:hover {
+                background-color: #45a049;
+            }
+
+            #result {
+                margin-top: 20px;
+                font-size: 18px;
+                font-weight: bold;
+                color: #307637;
+            }
+
+            #resultsTable {
+                margin-top: 20px;
+                margin-bottom: 60px; /* Add space to prevent overlap with the footer */
+                width: 80%;
+                margin-left: auto;
+                margin-right: auto;
+                border-collapse: collapse;
+                text-align: left;
+                background-color: #ffffff;
+                box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+                border-radius: 10px;
+                overflow: hidden;
+            }
+
+            #resultsTable th, #resultsTable td {
+                padding: 12px 15px;
+                border: 1px solid #ddd;
+            }
+
+            #resultsTable th {
+                background-color: #307637;
+                color: white;
+                text-align: center;
+            }
+
+            #resultsTable td {
+                text-align: center;
+            }
+
+            /* Footer styling */
+            #footer {
+                text-align: center;
+                width: 100%;
+                background-color: #dfdfdf;
+                padding-bottom: 10px;
+                padding-top: 10px;
+                font-size: 14px;
+                color: #555;
+                box-shadow: 0
+            }
+        </style>
+        <title>Rolsa Technologies Carbon Footprint Calculator</title>
+    </head>
+
+    <header>
+        <div id="headbanner">
+            <h1 id="companyname">Rolsa Technologies</h1>
+            <h1 id="pagename">Carbon Footprint Calculator</h1>
+            <h1 id="cornerbutton"><a href="/home">Home</a></h1>
+        </div>
+    </header>
+
+    <body>
+        <h4 style="color: red; text-align: center;">Enter your usage and travel distances for a specific period of time (e.g., a month or a year). Leave fields blank if not applicable.</h4>
+        <div id="calculatorInputs">
+            <h3>Energy Usage</h3>
+            <div>
+                <label>Electricity: </label>
+                <input type="number" id="Electricity" placeholder="Electricity usage"><span id="inputUnits">kWh</span><br>
+
+                <label>Natural Gas: </label>
+                <input type="number" id="NaturalGas" placeholder="Natural gas usage"><span id="inputUnits">kWh</span><br>
+
+                <label>Gas Oil: </label>
+                <input type="number" id="GasOil" placeholder="Gas Oil usage"><span id="inputUnits">kWh</span><br>
+
+                <label>LPG: </label>
+                <input type="number" id="LPG" placeholder="LPG usage"><span id="inputUnits">kWh</span><br>
+
+                <label>Propane: </label>
+                <input type="number" id="Propane" placeholder="Propane usage"><span id="inputUnits">kWh</span><br>
+
+                <label>Coal: </label>
+                <input type="number" id="Coal" placeholder="Coal usage"><span id="inputUnits">kWh</span><br>
+
+                <label>Wood: </label>
+                <input type="number" id="Wood" placeholder="Wood usage"><span id="inputUnits">kWh</span><br>
+            </div>
+
+            <h3>Travel Distances</h3>
+            <div>
+                <label>Domestic Flights: </label>
+                <input type="number" id="DomesticFlights" placeholder="Distance travelled"><span id="inputUnits">km</span><br>
+
+                <label>Travel by Car: </label>
+                <input type="number" id="CarTravel" placeholder="Distance travelled"><span id="inputUnits">km</span><br>
+
+                <label>Travel by Motorbike: </label>
+                <input type="number" id="MotorbikeTravel" placeholder="Distance travelled"><span id="inputUnits">km</span><br>
+            </div>
+
+            <button id="calculateButton" onclick="calculateEmissions()">Calculate</button>
+            <div id="result"></div>
+            <table id="resultsTable" style="display: none;">
+                <thead>
+                    <tr>
+                        <th>Category</th>
+                        <th>Emissions (kg CO2)</th>
+                    </tr>
+                </thead>
+                <tbody id="resultsTableBody"></tbody>
+            </table>
+        </div>
+
+        <script>
+            // Carbon emission factors (kg CO2 per unit)
+            const emissionFactors = {
+                Electricity: 0.20705,
+                NaturalGas: 0.18290,
+                GasOil: 0.25649,
+                LPG: 0.21450,
+                Propane: 0.21411,
+                Coal: 0.34721,
+                Wood: 0.01132,
+                DomesticFlights: 0.27257,
+                CarTravel: 0.16984,
+                MotorbikeTravel: 0.11367
+            };
+
+            // Function to calculate total carbon emissions
+            function calculateEmissions() {
+                // Get input values
+                const inputs = {
+                    Electricity: parseFloat(document.getElementById('Electricity').value) || 0,
+                    NaturalGas: parseFloat(document.getElementById('NaturalGas').value) || 0,
+                    GasOil: parseFloat(document.getElementById('GasOil').value) || 0,
+                    LPG: parseFloat(document.getElementById('LPG').value) || 0,
+                    Propane: parseFloat(document.getElementById('Propane').value) || 0,
+                    Coal: parseFloat(document.getElementById('Coal').value) || 0,
+                    Wood: parseFloat(document.getElementById('Wood').value) || 0,
+                    DomesticFlights: parseFloat(document.getElementById('DomesticFlights').value) || 0,
+                    CarTravel: parseFloat(document.getElementById('CarTravel').value) || 0,
+                    MotorbikeTravel: parseFloat(document.getElementById('MotorbikeTravel').value) || 0
+                };
+
+                // Calculate individual and total emissions
+                let totalEmissions = 0;
+                const individualEmissions = {};
+                for (const [key, value] of Object.entries(inputs)) {
+                    individualEmissions[key] = value * emissionFactors[key];
+                    totalEmissions += individualEmissions[key];
+                }
+
+                // Display total emissions
+                document.getElementById('result').innerText = `Total Carbon Emissions: ${totalEmissions.toFixed(2)} kg CO2`;
+
+                // Display individual emissions in a table
+                const resultsTable = document.getElementById('resultsTable');
+                const resultsTableBody = document.getElementById('resultsTableBody');
+                resultsTableBody.innerHTML = ''; // Clear previous results
+                for (const [key, value] of Object.entries(individualEmissions)) {
+                    const row = `<tr>
+                        <td>${key.replace(/([A-Z][a-z]+)/g, ' $1').trim()}</td>
+                        <td>${value.toFixed(2)}</td>
+                    </tr>`;
+                    resultsTableBody.innerHTML += row;
+                }
+                resultsTable.style.display = 'table'; // Show the table
+            }
+        </script>
+        
+        <footer>
+            <div id="footer">
+                <p>Emission factors are based on the UK Government's "Government conversion factors for company reporting of greenhouse gas emissions" (2024). | <a href="https://www.gov.uk/government/collections/government-conversion-factors-for-company-reporting">UK Government Conversion Factors</a>.</p>
+            </div>
+        </footer>
+    </body>
+
+    
+</html>

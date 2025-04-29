@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="static/css/style.css">
+        <style>
+            /* Centers the login form in the middle of the page */
+            #loginForm {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                text-align: center;
+                width: 400px;
+                padding: 30px;
+                border: 1px solid #ddd;
+                border-radius: 10px;
+                background-color: #ffffff;
+                box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            }
+
+            #loginForm h3 {
+                margin-bottom: 20px;
+                font-size: 24px;
+                color: #307637;
+                text-decoration: underline;
+            }
+
+            #loginForm label {
+                width: 100%;
+                display: inline-block;
+                text-align: left;
+                margin-bottom: 10px;
+                font-weight: bold;
+                color: #333;
+            }
+
+            #loginForm input {
+                width: 100%;
+                padding: 10px;
+                margin-bottom: 15px;
+                font-size: 14px;
+                border: 1px solid #ccc;
+                border-radius: 5px;
+                box-sizing: border-box;
+            }
+
+            #loginForm button {
+                width: 100%;
+                padding: 10px;
+                background-color: #418a44;
+                color: white;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+                font-size: 16px;
+            }
+
+            #loginForm button:hover {
+                background-color: #45a049;
+            }
+
+            #loginForm ul {
+                list-style-type: none;
+                padding: 0;
+                margin: 0;
+            }
+
+            #loginForm li {
+                color: red;
+                font-size: 14px;
+                margin-top: 10px;
+            }
+        </style>
+        <title>Rolsa Technologies Login Page</title>
+    </head>
+    <header>
+        <div id="headbanner">
+            <h1 id="companyname">Rolsa Technologies</h1>
+            <h1 id="pagename">Login</h1>
+            <h1 id="cornerbutton"><a href="/home">Home</a></h1>
+        </div>
+    </header>
+    <body>
+        <div id="loginForm">
+            <h3 style="text-decoration: underline;">Login</h3>
+            <form method="POST" action="/login">
+                <p></p>
+                <label>Email: </label>
+                <input type="email" name="email" placeholder="Enter your email" required></input>
+            
+                <p></p>
+                <label>Password: </label>
+                <input type="password" name="password" placeholder="Enter your password" required></input>
+                {% with messages = get_flashed_messages() %}
+                    {% if messages %}
+                        <ul>
+                            {% for message in messages %}
+                                <li style="color: red;">{{ message }}</li>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
+                {% endwith %}
+            
+                <p></p>
+                <button type="submit">Login</button>
+            </form>
+            <p>Don't have an account? <a href="/signup">Sign up</a></p>
+        </div>
+    </body>
+    
+</html>
