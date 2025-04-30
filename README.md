@@ -13,7 +13,11 @@ It likely *will* get flagged for trying to 'Edit files on your pc' but this is s
 # Method 2
 Under the green 'Code' dropdown to the top right, click codespaces, then create new codespace. In the codespace, click 'install recommended extentions' when it prompts you to install python, then in the terminal, run `pip install flask` to install flask. Finally click the little run button in the top right corner, then ctrl+click on the port number underlined in the terminal. Then come back here and complete the form below.
 
-# End
+# Important
+If you use the sign-up or login page, you DO NOT have to use your real email, or even a real one at that. It only needs to follow the convention of 'name@domain.com'. The email and password you use will simply be saved to the `customerDetails` and `bookings` csv files, which are only local to your session and cannot be seen by anyone else.
+
+
+
 If you need any help with either method of running it please feel free to ask me for help :)
 
 Thank youu <3
