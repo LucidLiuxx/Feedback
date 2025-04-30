@@ -10,8 +10,9 @@ It probably *will* get flagged for trying to 'Edit files on your pc' but this is
 # Method 2
 Under the green 'Code' dropdown to the top right, click codespaces, then create new codespace. In the codespace, click 'install recommended extentions' when it prompts you to install python, then in the terminal, run `pip install flask` to install flask. Finally click the little run button in the top right corner, then ctrl+click on the port number underlined in the terminal. Then come back here and complete the form below.
 
-# Bottom
+# End
 If you need any help with either method of running it please feel free to ask me for help :)
 
 Thank youu <3
+
 Form to fill in - https://forms.office.com/e/K8Bdfpqa6q
