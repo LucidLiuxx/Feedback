@@ -4,7 +4,9 @@ Hello, this is my project for my exam and I would appreciate it if you could jus
 There are a few ways you can do this, one is extremely simple but requires you installing and running an executable, while the other is better if you don't trust it but you will have to do a few things first.
 
 # Method 1
-Under the green 'Code' drop down to the top right, in local, click 'download zip' then run the executable within the 'Executable' folder. Do not move the csv files or executable file out of the folder when you do this.
+Under the green 'Code' drop down to the top right, in local, click 'download zip'
+
+Within your file explorer, go to where you downloaded the zip file to and extract it. Open the 'Executable' folder and run the file named `Rolsa Technologies Website`. Do not move the csv files or executable file out of the folder when you do this.
 
 It likely *will* get flagged for trying to 'Edit files on your pc' but this is simply the app writing to and reading from the 2 csv files within the Executable folder as these are where data is stored between sessions. If this puts you off, you may try method 2 instead.
 
